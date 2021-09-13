@@ -1,0 +1,47 @@
+#systemd unit file for tomcat
+
+[Unit]
+
+Description=Apache Tomcat Web Application Container
+
+After=syslog.target network.target
+
+
+[Service]
+
+Type=forking
+
+Environment="JAVA_HOME=/home/admin/jdk8"
+
+Environment="CATALINA_PID=/home/admin/tomcat/qa/bin/tomcat.pid"
+
+Environment="CATALINA_HOME=/home/admin/tomcat/qa"
+
+Environment="CATALINA_BASE=/home/admin/tomcat/qa"
+
+Environment="CATALINA_OPTS=-Xms1024M -Xmx2048M -server -XX:+UseParallelGC"
+
+#out of memory 시에 JVM 시작 경로에 덤프
+
+#Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
+
+ExecStart=/home/admin/tomcat/qa/bin/startup.sh
+
+ExecStop=/home/admin/tomcat/qa/bin/shutdown.sh
+
+
+
+User=admin
+
+Group=admin
+
+UMask=0007
+
+RestartSec=10
+
+Restart=always
+
+
+[Install]
+
+WantedBy=multi-user.target
