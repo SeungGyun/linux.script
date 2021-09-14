@@ -32,11 +32,11 @@
 
 - xxx.service
 
-파일 생성 위치 
+   파일 생성 위치 
 
 	/etc/systemd/system
 
-서비스 등록 활성화
+   서비스 등록 활성화
 
     sudo systemctl daemon-reload
 	sudo systemctl enable tomcat
